@@ -51,7 +51,8 @@ setInterval(function(){
 
     // Account for other directions here:
 
-}, 60 / 1000) // <- What is this number?
+}, 60 / 1000)
+
 
 // When we want to start walking a given direction, let's change: 
 //  1. The characters gif.
