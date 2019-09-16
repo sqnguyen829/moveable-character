@@ -46,7 +46,7 @@ setInterval(function(){
     }
     
     if(direction == 'down'){
-        character.style.down = `${top+speed}px`
+        character.style.top = `${top+speed}px`
     }
 
     // Account for other directions here:
