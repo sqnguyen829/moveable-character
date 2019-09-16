@@ -24,7 +24,7 @@ let direction = null
 // Define a variable to reperesent the speed of our character
 let speed = 5
 
-// Have someone at your table do some research on  setInterval- what is it doing?
+// Do some research on  setInterval- what is it doing?
 setInterval(function(){
 
     // character.style.left / bottom are both strings: "0px"
