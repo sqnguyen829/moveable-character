@@ -22,7 +22,7 @@ document.body.append(character)
 let direction = null
 
 // Define a variable to reperesent the speed of our character
-let speed = 0.25
+let speed = 2
 
 // Do some research on  setInterval- what is it doing?
 setInterval(function(){
@@ -30,11 +30,17 @@ setInterval(function(){
     // character.style.left and character.style.bottom are both strings ("0px")
     // If we want to do some arithmatic, we'll need to parse them into integers:
     const left = parseInt(character.style.left)
-    const top = parseInt(character.style.top)
+    const bottom = parseInt(character.style.bottom)
 
     // If the character is moving right, the distance between him and the left side of the screen should increase
-    if(direction == 'right'){
+    if(direction == 'right' && left<1400){
         character.style.left = `${left+speed}px`
+    }else if(direction == 'left' && left>0) {
+        character.style.left = `${left-speed}px`
+    }else if(direction == 'up' && bottom < 700) {
+        character.style.bottom = `${bottom+speed}px`
+    }else if(direction == 'down' && bottom > 0) {
+        character.style.bottom = `${bottom-speed}px`
     }
 
     // Account for other directions here:
@@ -49,3 +55,52 @@ function walkRight(){
     character.src = `${ASSET_ROOT}/walkright.gif`
     direction = 'right'
 }
+
+function walkLeft(){
+    // let leftNumbers = dodger.style.left.replace("px", "");
+    // let left = parseInt(leftNumbers, 10);
+    character.src = `${ASSET_ROOT}/walkleft.gif`
+    direction = 'left'
+}
+
+function walkUp(){
+    character.src = `${ASSET_ROOT}/walkup.gif`
+    direction = 'up'
+}
+
+function walkDown(){
+    character.src = `${ASSET_ROOT}/walkdown.gif`
+    direction = 'down'
+}
+
+function stop(){
+    character.src = `${ASSET_ROOT}/static.gif`
+    direction = ''
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "ArrowLeft") {
+      walkLeft();
+      stopKey();
+    }
+    else if (e.key === "ArrowRight"){
+      walkRight();
+      stopKey();
+    }
+    else if (e.key === "ArrowDown"){
+      walkDown();
+      stopKey();
+    }
+    else if (e.key === "ArrowUp"){
+      walkUp();
+      stopKey();
+    } else{
+        stop();
+    }
+  });
+
+  function stopKey(){
+    document.addEventListener("keyup", function(e) {
+        stop();
+    })
+  }
